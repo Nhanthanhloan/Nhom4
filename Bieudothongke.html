@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<title>KC326</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<style>
+{font-family: Arial , Helvetica, sans-serif;}
+.navbar {
+  width: 100%;
+  background-color: black;
+  overflow: auto;
+}
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+.navbar a:hover {
+  background-color: #000;
+}
+.active {
+  background-color: #04AA6D;
+}
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+.dropdown .dropbtn {
+  font-size: 17px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 17px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+<body>
+<h1 align="CENTER">ĐỒ ÁN CUỐI KÌ</h1>
+<div class="navbar">
+  <a class="active" href="Trangchu.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a> 
+  <a href="Trangthanhvien.html"><i class="fa fa-fw fa-search"></i>Thành viên</a> 
+  <div class="dropdown">
+  <button class="dropbtn">Dữ liệu
+    <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="Trangdulieu.html">Nhập dữ liệu</a>
+      <a href="Bieudothongke.html">Biểu đồ thống kê</a>
+    </div> 
+  </div> 
+</a>
+  <a href="Tranglienhe.html"><i class="fa fa-fw fa-user"></i>Liên hệ</a>
+</div>
+<div class="w3-container w3-teal">
+  <h2 align="CENTER">BIỂU ĐỒ THỐNG KÊ</h2>
+</div>
+<style>
+  body{
+    background-color: #F0FFFF;
+  }
+</style>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script> 
+<script>
+    function thongkePhucvu()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?api_key=KR395Z0XUHB4HCKA&field1=0";
+        urlHere = "https://api.thingspeak.com/channels/ 1745243 /feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var length = data.feeds.length;
+                dataPhucvu = new Array();
+
+                for(i=0;i<length;i++){
+                    dataPhucvu.push(data.feeds[i].field1);
+                }
+                // console.log(dataPhucvu);
+                tongGiolamviec=0, tongLuong=0
+                for(i=0;i<length;i++){
+                  tongGiolamviec += parseInt(dataPhucvu[i]);
+                }
+                // console.log(tongGiolamviec);
+                tongLuong = tongGiolamviec * 20000;
+                console.log(tongLuong);
+                document.getElementById("tongLuong").innerHTML = "Tong luong: " + tongLuong +"dong";
+                var yPhucvu = new Array();
+                var xPhucvu = new Array();
+
+                for(var i=0;i<length;i++){
+                    yPhucvu.push(data.feeds[i].field2);
+                    xPhucvu.push(data.feeds[i].field1);
+                }
+
+                // console.log(yPhucvu);
+                // console.log(xPhucvu);
+                //bieu đồ
+
+                new Chart("chartPhucvu", {
+                    type: "bar",
+                    data: {
+                        labels: xPhucvu,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "blue",
+                            label: "BIỂU ĐỒ SỐ GIỜ LÀM VIỆC CỦA NHÂN VIÊN PHỤC VỤ",
+                            data: yPhucvu
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                  
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+    function thongkePhache()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?api_key=YY4UNAQ1GJ15ZW0D&field1=0";
+        urlHere = "https://api.thingspeak.com/channels/ 1745244 /feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var length = data.feeds.length;
+                dataPhache = new Array();
+
+                for(i=0;i<length;i++){
+                    dataPhache.push(data.feeds[i].field2);
+                }
+                tongGiolamviec=0, tongluong=0
+                for(i=0;i<dataXuat.length;i++){
+                  tongPhache += parseInt(dataXuat[i]);
+                }
+                var yPhache = new Array();
+                var xPhache = new Array();
+
+                for(var i=0;i<length;i++){
+                    yPhache.push(data.feeds[i].field2);
+                    xPhache.push(data.feeds[i].field1);
+                }
+                console.log(yPhache);
+                console.log(xPhache);
+                new Chart("chartPhache", {
+                    type: "bar",
+                    data: {
+                        labels: xPhache,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "pink",
+                            label: "BIỂU ĐỒ SỐ GIỜ LÀM VIỆC CỦA NHÂN VIÊN PHA CHẾ",
+                            data: yPhache
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    //max: (yChi.max)
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+    function thongkeBaove()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?api_key=HM2CMXDWJOGDJ4XH&field1=0";
+        urlHere = "https://api.thingspeak.com/channels/ 1745246 /feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var length = data.feeds.length;
+                dataBaove = new Array();
+
+                for(i=0;i<length;i++){
+                    dataBaove.push(data.feeds[i].field2);
+                }
+                tongGiolamviec=0, tongluong=0
+                for(i=0;i<dataXuat.length;i++){
+                  tongBaove += parseInt(dataXuat[i]);
+                }
+                var yBaove = new Array();
+                var xBaove = new Array();
+
+                for(var i=0;i<length;i++){
+                    yBaove.push(data.feeds[i].field2);
+                    xBaove.push(data.feeds[i].field1);
+                }
+                console.log(yBaove);
+                console.log(xBaove);
+                new Chart("chartBaove", {
+                    type: "bar",
+                    data: {
+                        labels: xPhache,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "green",
+                            label: "BIỂU ĐỒ SỐ GIỜ LÀM VIỆC CỦA NHÂN VIÊN BẢO VỆ",
+                            data: yBaove
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+    </script> 
+</div>
+<div class="content">
+  <form name="form2">
+        <input type = "button" value = "Chạy số liệu" onclick = "thongkePhucvu()">
+    <div class="content">
+  <form name="form2">
+    <h1> Nhân viên Phục vụ </h1>
+    <h1 id="tongLuong"> Tong luong: 0 dong </h1>
+
+<table>
+  <tr>
+    <td><canvas id="chartPhucvu" style="width:100%; max-width: 1000p;margin-left: 100px"></canvas></td>
+    <td><img src="https://e7.pngegg.com/pngimages/467/867/png-clipart-take-out-waiter-restaurant-graphy-drink-furniture-cafe.png" alt="Pineapple" width="700" height="450"></td>
+  </tr>
+  </table>
+  <h1> Nhân viên Pha chế</h1>
+  
+<table>
+  <tr>
+    <td><canvas id="chartPhache" style="width:100%;max-width:1000px;margin-left: 100px;"></canvas></td>
+    <td><img src="https://image.shutterstock.com/z/stock-vector-bartender-woman-pouring-dark-stout-beer-to-glass-female-barkeeper-working-at-bar-counter-beer-tap-774745870.jpg" alt="Pineapple" width="700" height="450"></td>
+  </tr>
+  </table>
+  <h1> Nhân viên Bảo vệ</h1>
+  
+<table>
+  <tr>
+    <td><canvas id="chartBaove" style="width:100%;max-width:1000px;margin-left: 100px;"></canvas></td>
+    <td><img src="https://media.istockphoto.com/vectors/vector-characters-two-young-happy-police-officers-vector-id511368656?k=20&m=511368656&s=612x612&w=0&h=YMAQu8VqjFXo7BGJCkcjBsYQbquYa0NGanVDWdlBhZw=" alt="Pineapple" width="700" height="450"></td>
+  </tr>
+  </table>
+  </div>
+</body>
+</html>
