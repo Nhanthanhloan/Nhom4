@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>NHÂN VIÊN NHẬP DỮ LIỆU</title>
+<title>NHAN VIEN NHAP DU LIEU</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -86,8 +86,8 @@
     function nhapPhache(dat1, dat2)
     {
         var request = new XMLHttpRequest();
-        var urlHere = "https://api.thingspeak.com/channels/1745244/feeds.json";
-        urlHere = urlHere + "api_key=YY4UNAQ1GJ15ZW0D&result=";
+        var urlHere = "https://api.thingspeak.com/update?";
+        urlHere = urlHere + "api_key=YY4UNAQ1GJ15ZW0D&field1=";
         urlHere = urlHere + dat1 + "&field2=" + dat2;
         request.open('GET', urlHere, true);
         request.send();
@@ -95,7 +95,7 @@
     function nhapBaove(dat1, dat2)
     {
         var request = new XMLHttpRequest();
-        var urlHere = "https://api.thingspeak.com/channels/1745246/feeds.json";
+        var urlHere = "https://api.thingspeak.com/update?";
         urlHere = urlHere + "api_key=HM2CMXDWJOGDJ4XH&field1=";
         urlHere = urlHere + dat1 + "&field2=" + dat2;
         request.open('GET', urlHere, true);
@@ -106,24 +106,19 @@
 <body>
 <h1 align="CENTER">ĐỒ ÁN CUỐI KÌ</h1>
 <div class="navbar">
-  <a class="active" href="Trangchu.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a> 
+  <a href="index.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a> 
+  <a href="Trangyeucau.html"><i class="fa fa-fw fa-search"></i>Yêu cầu</a> 
   <a href="Trangthanhvien.html"><i class="fa fa-fw fa-search"></i>Thành viên</a> 
-  <div class="dropdown">
-  <button class="dropbtn">Dữ liệu
-    <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="Nhapdulieu.html">Nhập dữ liệu</a>
-      <a href="Bieudothongke.html">Biểu đồ thống kê</a>
-    </div> </div> </a>
-  <a href="Tranglienhe.html"><i class="fa fa-fw fa-user"></i>Liên hệ</a>
+  <a class="active" href="Trangdulieu.html"><i class="fa fa-fw fa-envelope"></i>Nhập dữ liệu</a> 
+  <a href="Bieudothongke.html"><i class="fa fa-fw fa-file"></i>Biểu đồ thống kê</a> 
+  <a href="Tranglienhe.html"><i class="fa fa-fw fa-globe"></i>Liên hệ</a>
 </div>
 <div class="w3-container">
 </div>
 <div class="w3-row-padding">
   <div class="w3-third">
     <h2>
- <font face="times new roman">
+ <font face="arial">
     <b>PHỤC VỤ</b>
     </font> 
   <br>
@@ -148,11 +143,11 @@
                Phục vụ<br>
           </li>
           <li>
-            <b>Số giờ làm việc:</b>
-              <input type="times" name="dat1" value="0">
+            <b>Ngày làm việc</b>
+              <input type="text" name="dat1" value="0">
           </li>
             <li>
-            <b>Ngày làm việc</b>
+            <b>Số giờ làm việc</b>
               <input type="text" name="dat2" value="0">
           </li>
           <input type="button" value="Nhập" onclick = "nhapPhucvu(form1.dat1.value,form1.dat2.value)">
@@ -162,7 +157,7 @@
   </div>
   <div class="w3-third">
     <h2>
- <font face="times new roman">
+ <font face="arial">
     <b>PHA CHẾ</b>
     </font> 
   <br>
@@ -176,7 +171,7 @@
           <br>
           <br>
     </em></p> 
-<form>
+<form id="form2">
     <fieldset style="width:250px">
       <legend><b>Thông tin nhân viên</b></legend>
         <ol>
@@ -189,12 +184,12 @@
                Pha chế<br>
           </li>
           <li>
-            <b>Số giờ làm việc:</b>
-              <input type="times" name="sogiolamviec" value="0">
+            <b>Ngày làm việc</b>
+              <input type="text" name="dat1" value="0">
           </li>
             <li>
-            <b>Ngày làm việc</b>
-              <input type="text" name="ngày/tháng/năm" value="0">
+            <b>Số giờ làm việc</b>
+              <input type="text" name="dat2" value="0">
           </li>
           <input type="button" value="Nhập" onclick = "nhapPhache(form1.dat1.value,form1.dat2.value)">
         </ol>
@@ -203,7 +198,7 @@
   </div>
   <div class="w3-third">
 <h2>
- <font face="times new roman">
+ <font face="arial">
     <b>BẢO VỆ</b>
     </font> 
   <br>
@@ -217,7 +212,7 @@
            <br>
            <br>
     </em></p>
-<form>
+<form id="form3">
     <fieldset style="width:250px">
       <legend><b>Thông tin nhân viên</b></legend>
         <ol>
@@ -230,12 +225,12 @@
                Bảo vệ<br>
           </li>
           <li>
-            <b>Số giờ làm việc:</b>
-              <input type="times" name="sogiolamviec" value="0">
+            <b>Ngày làm việc</b>
+              <input type="text" name="dat1" value="0">
           </li>
             <li>
-            <b>Ngày làm việc</b>
-              <input type="text" name="ngày/tháng/năm" value="0">
+            <b>Số giờ làm việc</b>
+              <input type="text" name="dat2" value="0">
           </li>
           <input type="button" value="Nhập" onclick = "nhapBaove(form1.dat1.value,form1.dat2.value)">
         </ol>
