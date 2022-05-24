@@ -1,6 +1,7 @@
+
 <!DOCTYPE html>
 <html>
-<title>KC326</title>
+<title>DO AN CUOI KY KC326</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,44 +72,88 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.container {
+  position: relative;
+  font-family: Arial;
+}
+
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container img {vertical-align: middle;}
+
+.container .content {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+video {
+  width: 100%;
+  height: auto;
+}
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
 </style>
 </head>
 <body>
 <h1 align="CENTER">ĐỒ ÁN CUỐI KÌ</h1>
 <div class="navbar">
-  <a class="active" href="Trangchu.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a> 
+  <a class="active" href="index.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a> 
+  <a href="Trangyeucau.html"><i class="fa fa-fw fa-search"></i>Yêu cầu</a> 
   <a href="Trangthanhvien.html"><i class="fa fa-fw fa-search"></i>Thành viên</a> 
-  <div class="dropdown">
-  <button class="dropbtn">Dữ liệu
-    <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="Nhapdulieu.html">Nhập dữ liệu</a>
-      <a href="Bieudothongke.html">Biểu đồ thống kê</a>
-    </div> 
-  </div> 
-</a>
-  <a href="Tranglienhe.html"><i class="fa fa-fw fa-user"></i>Liên hệ</a>
+  <a href="Trangthanhvien.html"><i class="fa fa-fw fa-envelope"></i>Nhập dữ liệu</a> 
+  <a href="Trangthanhvien.html"><i class="fa fa-fw fa-file"></i>Biểu đồ thống kê</a> 
+  <a href="Tranglienhe.html"><i class="fa fa-fw fa-globe"></i>Liên hệ</a>
 </div>
 <div class="w3-container w3-teal">
   <h2 align="CENTER">QUẢN LÍ NHÂN VIÊN QUÁN COFFEE KC326</h2>
 </div>
-<img src="coffekc326.webp" alt="Coffee" style="width:100%">
+<video width="400" controls>
+  <source src="coffeeshop.mp4" type="video/mp4">
+</video>
 <div class="w3-container">
-  <p></p>
+    <h3 align="center">Quản Lý Nhân Viên Thực Tế:</h3><br>
+    <p>Việc Quản lý nhân viên có nhiều mô hình linh hoạt. Nhưng trên thực thế, việc quản lý nhân viên của một hàng quán, một cửa hàng nhỏ lẻ với ít nhân viên thường không được chú trọng đầu tư vào những mô hình lớn như trên<br>. Việc quản lý ở các cửa hàng này chỉ là sự quản lý bằng việc ghi chép sổ sách hay sự giám sát thủ công.<br>
+       Để đơn giản hoá việc quản lý và loại bỏ không cần thiết của người giảm sát (không cần tuyển thêm nhân viên để giám sát)<br>
+       - Tạo một trang web mà nhân viên có thể tự nhập những thông tin cơ bản<br>
+       - Trang web được giám sát bởi người chủ cửa hàng, trang web thể hiện cô động thông tin cần thiết(số giờ làm, tổng tiền lương)<br>
+       -> Việc quản lý trở nên đơn giản mà không cần sự đầu tư quá lớn đối với những hàng quán nhỏ lẻ.</p>
+       <br>
+       <br>
+       <br>
+       <br>
+  </div>
 </div>
-<div class="w3-container w3-teal">
-  <h1>Nội dung thực hiện:<br>Quản lý số giờ làm việc của nhân viên</h1>
-  <h2>Quán coffee KC326 hiện đang có 3 nhân viện tại vị trí làm việc khác nhau,<br>cần quản lý số giờ làm của họ thông qua trang web này:</h2>
-  <h3>Mức lương cơ bản:<br>
-    <h4>- Nhân viên Phục vụ: 21000VNĐ<br>
-        - Nhân viên Pha chế: 22000VNĐ<br>
-        - Nhân viên Bảo vệ: 19000VNĐ<br>
-    <p>- Nhân viên khi kết thúc ca làm việc, click vào mục "dữ liệu" chọn "Nhập dữ liệu" nhập các thông tin sau:<br>
-      + Họ và tên<br>
-      + Số giờ làm việc<br>
-      + Vị trí làm việc<br>
-      - Sau khi hoàn tất việc nhập dữ liệu, sẽ thống kê số giờ làm việc trong tháng dưới dạng biểu đồ, chọn "Biểu đồ thống kê" trong mục "Dữ liệu"</p>    
 </div>
 </body>
 </html> 
