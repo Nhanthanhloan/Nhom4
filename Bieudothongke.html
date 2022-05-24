@@ -76,19 +76,12 @@
 <body>
 <h1 align="CENTER">ĐỒ ÁN CUỐI KÌ</h1>
 <div class="navbar">
-  <a class="active" href="Trangchu.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a> 
+  <a href="index.html"><i class="fa fa-fw fa-home"></i>Trang chủ</a> 
+  <a href="Trangyeucau.html"><i class="fa fa-fw fa-search"></i>Yêu cầu</a> 
   <a href="Trangthanhvien.html"><i class="fa fa-fw fa-search"></i>Thành viên</a> 
-  <div class="dropdown">
-  <button class="dropbtn">Dữ liệu
-    <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="Trangdulieu.html">Nhập dữ liệu</a>
-      <a href="Bieudothongke.html">Biểu đồ thống kê</a>
-    </div> 
-  </div> 
-</a>
-  <a href="Tranglienhe.html"><i class="fa fa-fw fa-user"></i>Liên hệ</a>
+  <a href="Trangdulieu.html"><i class="fa fa-fw fa-envelope"></i>Nhập dữ liệu</a> 
+  <a class="active" href="Bieudothongke.html"><i class="fa fa-fw fa-file"></i>Biểu đồ thống kê</a> 
+  <a href="Tranglienhe.html"><i class="fa fa-fw fa-globe"></i>Liên hệ</a>
 </div>
 <div class="w3-container w3-teal">
   <h2 align="CENTER">BIỂU ĐỒ THỐNG KÊ</h2>
@@ -124,9 +117,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                   tongGiolamviec += parseInt(dataPhucvu[i]);
                 }
                 // console.log(tongGiolamviec);
-                tongLuong = tongGiolamviec * 20000;
+                tongLuong = tongGiolamviec * 21000;
                 console.log(tongLuong);
-                document.getElementById("tongLuong").innerHTML = "Tong luong: " + tongLuong +"dong";
+                document.getElementById("tongLuong").innerHTML = "Tong luong: " + tongLuong +" VNĐ";
                 var yPhucvu = new Array();
                 var xPhucvu = new Array();
 
@@ -194,12 +187,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 dataPhache = new Array();
 
                 for(i=0;i<length;i++){
-                    dataPhache.push(data.feeds[i].field2);
+                    dataPhache.push(data.feeds[i].field1);
                 }
-                tongGiolamviec=0, tongluong=0
-                for(i=0;i<dataXuat.length;i++){
-                  tongPhache += parseInt(dataXuat[i]);
+                // console.log(dataPhucvu);
+                tongGiolamviec=0, tongLuong=0
+                for(i=0;i<length;i++){
+                  tongGiolamviec += parseInt(dataPhache[i]);
                 }
+                // console.log(tongGiolamviec);
+                tongLuong = tongGiolamviec * 22000;
+                console.log(tongLuong);
+                document.getElementById("tongLuong").innerHTML = "Tong luong: " + tongLuong +" VNĐ";
                 var yPhache = new Array();
                 var xPhache = new Array();
 
@@ -207,8 +205,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     yPhache.push(data.feeds[i].field2);
                     xPhache.push(data.feeds[i].field1);
                 }
-                console.log(yPhache);
-                console.log(xPhache);
+
+                // console.log(yPhache);
+                // console.log(xPhache);
+                //bieu do
+
                 new Chart("chartPhache", {
                     type: "bar",
                     data: {
@@ -233,7 +234,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                                 display: true,
                                 ticks: {
                                     beginAtZero: true,
-                                    //max: (yChi.max)
+                                  
                                 }
                             }]
                         }
@@ -264,12 +265,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 dataBaove = new Array();
 
                 for(i=0;i<length;i++){
-                    dataBaove.push(data.feeds[i].field2);
+                    dataBaove.push(data.feeds[i].field1);
                 }
-                tongGiolamviec=0, tongluong=0
-                for(i=0;i<dataXuat.length;i++){
-                  tongBaove += parseInt(dataXuat[i]);
+                // console.log(dataBaove);
+                tongGiolamviec=0, tongLuong=0
+                for(i=0;i<length;i++){
+                  tongGiolamviec += parseInt(dataBaove[i]);
                 }
+                // console.log(tongGiolamviec);
+                tongLuong = tongGiolamviec * 19000;
+                console.log(tongLuong);
+                document.getElementById("tongLuong").innerHTML = "Tong luong: " + tongLuong +" VNĐ";
                 var yBaove = new Array();
                 var xBaove = new Array();
 
@@ -277,16 +283,19 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     yBaove.push(data.feeds[i].field2);
                     xBaove.push(data.feeds[i].field1);
                 }
-                console.log(yBaove);
-                console.log(xBaove);
+
+                // console.log(yBaove);
+                // console.log(xBaove);
+                //bieu do
+
                 new Chart("chartBaove", {
                     type: "bar",
                     data: {
-                        labels: xPhache,
+                        labels: xBaove,
                         datasets: [
                         {
                             fill: false,
-                            backgroundColor: "green",
+                            backgroundColor: "yellow",
                             label: "BIỂU ĐỒ SỐ GIỜ LÀM VIỆC CỦA NHÂN VIÊN BẢO VỆ",
                             data: yBaove
                         }, 
@@ -303,6 +312,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                                 display: true,
                                 ticks: {
                                     beginAtZero: true,
+                                  
                                 }
                             }]
                         }
@@ -322,33 +332,45 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </script> 
 </div>
 <div class="content">
-  <form name="form2">
+  <form name="form1">
         <input type = "button" value = "Chạy số liệu" onclick = "thongkePhucvu()">
     <div class="content">
-  <form name="form2">
+  <form name="form1">
     <h1> Nhân viên Phục vụ </h1>
-    <h1 id="tongLuong"> Tong luong: 0 dong </h1>
-
+    <h1 id="tongLuong"> Tổng tiền lương: 0 VNĐ </h1>
 <table>
   <tr>
     <td><canvas id="chartPhucvu" style="width:100%; max-width: 1000p;margin-left: 100px"></canvas></td>
-    <td><img src="https://e7.pngegg.com/pngimages/467/867/png-clipart-take-out-waiter-restaurant-graphy-drink-furniture-cafe.png" alt="Pineapple" width="700" height="450"></td>
+    <td><img src="https://e7.pngegg.com/pngimages/467/867/png-clipart-take-out-waiter-restaurant-graphy-drink-furniture-cafe.png" alt="Phucvu" width="500" height="450"></td>
   </tr>
   </table>
-  <h1> Nhân viên Pha chế</h1>
-  
+  <div class="content">
+  <form name="form2">
+        <input type = "button" value = "Chạy số liệu" onclick = "thongkePhache()">
+    <div class="content">
+  <form name="form1">
+    <h1> Nhân viên Pha chế </h1>
+    <h1 id="tongLuong"> Tổng tiền lương: 0 VNĐ </h1>
 <table>
   <tr>
-    <td><canvas id="chartPhache" style="width:100%;max-width:1000px;margin-left: 100px;"></canvas></td>
-    <td><img src="https://image.shutterstock.com/z/stock-vector-bartender-woman-pouring-dark-stout-beer-to-glass-female-barkeeper-working-at-bar-counter-beer-tap-774745870.jpg" alt="Pineapple" width="700" height="450"></td>
+    <td><canvas id="chartPhache" style="width:100%; max-width: 1000p;margin-left: 100px"></canvas></td>
+    <td><img src="https://image.shutterstock.com/z/stock-vector-bartender-woman-pouring-dark-stout-beer-to-glass-female-barkeeper-working-at-bar-counter-beer-tap-774745870.jpg" alt="Phache" width="500" height="450"></td>
   </tr>
   </table>
-  <h1> Nhân viên Bảo vệ</h1>
-  
+<table>
+  </tr>
+  </table>
+  <div class="content">
+  <form name="form3">
+        <input type = "button" value = "Chạy số liệu" onclick = "thongkeBaove()">
+    <div class="content">
+  <form name="form3">
+    <h1> Nhân viên Bảo vệ </h1>
+    <h1 id="tongLuong"> Tổng tiền lương: 0 VNĐ </h1>
 <table>
   <tr>
-    <td><canvas id="chartBaove" style="width:100%;max-width:1000px;margin-left: 100px;"></canvas></td>
-    <td><img src="https://media.istockphoto.com/vectors/vector-characters-two-young-happy-police-officers-vector-id511368656?k=20&m=511368656&s=612x612&w=0&h=YMAQu8VqjFXo7BGJCkcjBsYQbquYa0NGanVDWdlBhZw=" alt="Pineapple" width="700" height="450"></td>
+    <td><canvas id="chartBaove" style="width:100%; max-width: 1000p;margin-left: 100px"></canvas></td>
+    <td><img src="https://media.istockphoto.com/vectors/vector-characters-two-young-happy-police-officers-vector-id511368656?k=20&m=511368656&s=612x612&w=0&h=YMAQu8VqjFXo7BGJCkcjBsYQbquYa0NGanVDWdlBhZw=" alt="Baove" width="500" height="450"></td>
   </tr>
   </table>
   </div>
